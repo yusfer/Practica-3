@@ -61,28 +61,75 @@
 
 
 describe("GameBoard", function(){
-
-	
-	var GBoard = new GameBoard()
-	
-
-	
-	it("GBoard.inicializo",function(){
-		
-	expect(GBoard.this).toBe(GBoard.board)
-		
+/*
+	beforeEach(function(){
+		var OldGBoard = new GameBoard()
 	});
 	
 	
+	afterEach(function(){
+		GBoard = OldGBoard
+	});	*/
 	
 	it("GBoard.add", function(){
 		
-	
+	var GBoard = new GameBoard()
 	spyOn(GBoard, "add").andCallThrough();
 	
 	var foo = {};
 
 	expect(GBoard.add(foo).board).toBe(GBoard);
+	
+	});
+	
+	
+	it("GBoard meto en removed", function(){
+		
+	var GBoard = new GameBoard()
+	
+	spyOn(GBoard, "add").andCallThrough();	
+	spyOn(GBoard, "remove").andCallThrough();	
+	spyOn(GBoard, "resetRemoved").andCallThrough();	
+	
+	var foo1 = {};
+
+	GBoard.add(foo1);
+
+	GBoard.resetRemoved();
+	GBoard.remove(foo1);
+	
+	expect(GBoard.removed.length).toBe(1);
+	
+	GBoard.resetRemoved();
+	
+	expect(GBoard.removed.length).toBe(0);
+	});
+	
+	
+	//meto dos objetos, marco para borrar uno, doy a delete y miro length = 1
+	
+	it("GBoard borrar objeto", function(){
+	
+	var GBoard = new GameBoard()
+	
+	spyOn(GBoard, "add").andCallThrough();	
+	spyOn(GBoard, "remove").andCallThrough();	
+	spyOn(GBoard, "finalizeRemoved").andCallThrough();	
+	spyOn(GBoard, "resetRemoved").andCallThrough();	
+	
+	var foo1 = {};
+	var foo2 = {};
+	
+	GBoard.add(foo1);
+	GBoard.add(foo2);
+	
+	GBoard.resetRemoved();
+	GBoard.remove(foo1);
+	
+	GBoard.finalizeRemoved();
+	
+	expect(GBoard.objects.length).toBe(1)
+		
 	
 	});
 	
