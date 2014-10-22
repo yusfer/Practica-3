@@ -56,3 +56,69 @@
     colisionado con objetos de cierto tipo, no con todos los objetos.
 
 */
+
+
+
+
+describe("GameBoard", function(){
+
+	
+	var GBoard = new GameBoard()
+	
+
+	
+	it("GBoard.inicializo",function(){
+		
+	expect(GBoard.this).toBe(GBoard.board)
+		
+	});
+	
+	
+	
+	it("GBoard.add", function(){
+		
+	
+	spyOn(GBoard, "add").andCallThrough();
+	
+	var foo = {};
+
+	expect(GBoard.add(foo).board).toBe(GBoard);
+	
+	});
+	
+	
+});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
