@@ -133,6 +133,26 @@ describe("GameBoard", function(){
 	
 	});
 	
+	it("GBoard iterate",function(){
+	
+	var GBoard = new Game
+
+	spyOn(GBoard, "add").andCallThrough();
+	spyOn(GBoard, "iterate").andCallThrough();
+	
+	var foo1 = {};
+        var foo2 = {};
+
+        GBoard.add(foo1);
+        GBoard.add(foo2);
+
+	GBoard.iterate('step',1);
+
+	expect(foo1.step.toHaveBeenCalled());
+	
+
+	});
+
 	
 });
 	
