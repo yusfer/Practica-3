@@ -95,6 +95,7 @@ var Starfield = function(speed,opacity,numStars,clear) {
 // La clase PlayerShip tambien ofrece la interfaz step(), draw() para
 // poder ser dibujada desde el bucle principal del juego
 var PlayerShip = function() { 
+	tecla = false
     this.w =  SpriteSheet.map['ship'].w;
     this.h =  SpriteSheet.map['ship'].h;
     this.x = Game.width/2 - this.w / 2;
@@ -117,16 +118,21 @@ var PlayerShip = function() {
 	else if(this.x > Game.width - this.w) { 
 	    this.x = Game.width - this.w 
 	}
-
+	
+	if(tecla){
+		tecla = Game.keys['fire']
+	}
+	
 	this.reload-=dt;
-	if(Game.keys['fire'] && this.reload < 0) {
+	if(Game.keys['fire'] && this.reload < 0 &&!tecla) {
 	    // Esta pulsada la tecla de disparo y ya ha pasado el tiempo reload
-	    Game.keys['fire'] = false;
 	    this.reload = this.reloadTime;
 
 	    // Se añaden al gameboard 2 misiles 
 	    this.board.add(new PlayerMissile(this.x,this.y+this.h/2));
 	    this.board.add(new PlayerMissile(this.x+this.w,this.y+this.h/2));
+	    
+	    tecla = Game.keys['fire']
 	}
     }
 
