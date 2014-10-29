@@ -1,4 +1,3 @@
-
 describe("GameBoard", function(){
 	beforeEach(function(){
 		loadFixtures('index.html');
@@ -97,7 +96,7 @@ describe("GameBoard", function(){
 		
 	});
 	
-	it("GBoard funcion en objeto e iterate"), function(){
+	it("GBoard funcion en objeto e iterate", function(){
 		
 		function obj(){
 			this.funcDummy = function(){}			
@@ -105,12 +104,12 @@ describe("GameBoard", function(){
 		
 		GBoard.add(new obj)
 		//spyOn(board,"funcDummy").andCallThrough()
-		spyOn(board,"iterate").andCallThrough()
-		spyOn(board.objects[0],"funcDummy").andCallThrough()
+		spyOn(GBoard,"iterate").andCallThrough()
+		spyOn(GBoard.objects[0],"funcDummy").andCallThrough()
 		
 		GBoard.iterate("funcDummy");
 		
-		expect(board.objects.funcDummy).toHaveBeenCalled();
+		expect(GBoard.objects[0].funcDummy).toHaveBeenCalled();
 		
 	});
 	
